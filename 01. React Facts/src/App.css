@@ -1,0 +1,154 @@
+/* MAIN ELEMENTS */
+:root {
+  /* navbar */
+  --background-navbar: #21222A;
+  --font-navbar: 'Inter', sans-serif 16px 400;
+  --font-color:       #DEEBF8;
+  /* main page */
+  --main-background:  #282D35;
+  --main-text:        #FFFFFF;
+  --accent-blue:      #61DAFB;
+}
+
+html, body {
+  margin: 0px;
+  padding: 0px;
+ height: 100svh;
+}
+#root {
+  height: 100%;
+}
+
+/* NAVBAR */
+header {
+  display: block;
+  background-color: var(--background-navbar);
+  color: var(--text-navbar);
+}
+.navbar {
+  display: flex;
+  align-content: space-between;
+  margin: 0px;
+  padding: 10px;
+}
+.navbar a {
+  text-decoration: none;
+  margin: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.react-logo {
+  height: 30px; /* changed from Figma 28.93? */
+  width: auto;
+}
+.navbar-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 20px; /* changed from Figma 22.25? */
+  font-weight: 600;
+  color: var(--accent-blue);
+  margin-left: 5px;
+  padding-top: 5px;
+}
+
+.navbar-text2 {
+  font: var(--font-navbar);
+  color: var(--font-color);
+  margin: 30px;
+}
+/* navbar links */
+.navbar-links {
+  list-style-type: none;
+  display: flex;
+  margin: 30px;
+}
+
+.navbar-link {
+  font: var(--font-navbar);
+  color: var(--font-color);
+  margin-left: 30px;
+}
+
+/* MAIN PAGE */
+.page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.main-content {
+  display: flex;
+  width: 100%;
+  flex-grow: 1;
+  background-color: var(--main-background);
+  color: var(--main-text);
+  padding: 50px;
+  margin: 0px;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.main-content-h1 {
+  font-family: 'Inter', sans-serif;
+  font-size: 40px; /* changed from Figma 39.06? */
+  font-weight: 700;
+  font-weight: bold;
+  letter-spacing: -0.05em;
+}
+
+.main-content-li {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 15px 10px;
+}
+
+/* This is an old method of changing bullet points, including deleting them and then re-creating them with ::before 
+
+ .main-content ul {
+  list-style: none; 
+  max-width: 400px;
+} 
+
+ .main-content ul li::before {
+  content: "\2022";  
+  color: var(--accent-blue); 
+  font-weight: bold; 
+  display: inline-block; 
+  width: 1em;
+  margin-left: -1em; 
+} 
+
+*/
+
+/* new method of altering bullets */
+.main-content ul {
+  max-width: 400px;
+}
+.main-content ul li::marker {
+  font-size: 1.4em;
+  color: var(--accent-blue);
+}
+
+.background-logo {
+  height: 263px; 
+  width: auto;
+}
+
+/* FOOTER */
+.footer {
+  background-color: var(--main-background);
+  display: block;
+  bottom: 0px;
+  padding: 10px;
+  text-align: center;
+  /* flex-shrink: 0; */
+ 
+}
+
+.footer-text {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  color: var(--main-text);
+}
