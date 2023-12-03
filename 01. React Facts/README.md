@@ -1,8 +1,4 @@
-# React + Vite
+### 0.1 Fun facts about React
+First project of the course, done as a work-along. A static website with basic facts about React, done in order to practice the newly learnt library from the design offered by the course.
+![image](https://github.com/mklimczak93/scrimba-react-course/assets/123643355/0f9eb565-e545-4b4c-b0fc-f30c56c73f06)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
