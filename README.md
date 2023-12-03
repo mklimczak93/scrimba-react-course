@@ -17,3 +17,11 @@ Third project of the course was done as a work-along and the premise of this exe
 A simplified version of thr main page of Airbnb Experiences Clone was built, with each 'Card' of an experience created as a component getting data from an external data.js file imported and mapped in the ListOfCards file.
 ![image](https://github.com/mklimczak93/scrimba-react-course/assets/123643355/597c6e2c-4b6d-490b-aa04-e337e87886b5)
 ![image](https://github.com/mklimczak93/scrimba-react-course/assets/123643355/1b58b3bd-96fd-4055-b7fa-65cc8e512d3d)
+
+### 0.4 Travel Journal
+Fourth project of the course - done on my own - a travel journal with entries about various travel destinations. It was designed based on provided Figma file, however the code was written independently.
+Again, this project focused on the idea of inroducing simple "data-base" - a .js file with a simple travel info objects array. In the ListOfEntries file I mapped a previously written Entry component to each list object using Array.map().
+![image](https://github.com/mklimczak93/scrimba-react-course/assets/123643355/57084d56-4e5b-4dcf-b62a-5e59582ed0a6)
+![image](https://github.com/mklimczak93/scrimba-react-course/assets/123643355/064baa8f-f910-4c8c-b0f6-629e9cf714ab)
+
+
