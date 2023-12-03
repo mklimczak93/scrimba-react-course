@@ -1,0 +1,76 @@
+export default [
+    {
+        id: 1,
+        image: "/src/assets/location-photos/photo-1.jpg",
+        location: "Indonesia",
+        title: "Ceking Rice Terrace, Tegallalang",
+        date: "28 Aug, 2023",
+        description: "The Tegalalang rice terrace is a long time icon of Bali scenery and culture, with its famous green rice fields and slopes in the jungle. It uses Bali’s ancient Subak irrigation system, with rice paddies arranged in descending layers.",
+    },
+    {
+        id: 2,
+        image: "/src/assets/location-photos/photo-2.jpg",
+        location: "The Netherlands",
+        title: "Het Schip",
+        date: "21 Nov, 2021",
+        description: "Het Schip is a building complex in the Spaarndammerbuurt neighbourhood of Amsterdam, Netherlands. The complex in the architectural style of the Amsterdam School was designed by Michel de Klerk in 1919.",
+    },
+    {
+        id: 3,
+        image: "/src/assets/location-photos/photo-3.jpg",
+        location: "The Netherlands",
+        title: "De Hoge Veluwe National Park",
+        date: "3 Aug, 2021",
+        description: "De Hoge Veluwe National Park is a Dutch national park in the province of Gelderland near the cities of Ede, Wageningen, Arnhem and Apeldoorn.",
+    },
+    {
+        id: 4,
+        image: "/src/assets/location-photos/photo-4.jpg",
+        location: "Poland",
+        title: "Żywiec Landscape Park",
+        date: "16 Sept, 2020",
+        description: "Żywiec Landscape Park is a protected area in southern Poland. It was established in 1986 and covers an area of 359 square kilometres. The Park lies within Silesian Voivodeship and is named after the town of Żywiec.",
+    },
+    {
+        id: 5,
+        image: "/src/assets/location-photos/photo-5.jpg",
+        location: "The Netherlands",
+        title: "Justus Van Effen Complex, Rotterdam",
+        date: "29 Jun, 2020",
+        description: "Located in the Spangen neighborhood of Rotterdam, a residential area initially developed for the city's port workers, the complex was designed by Dutch architect Michiel Brinkman in 1922, becoming what Hebly called 'the apotheosis of Dutch functionalism.' ",
+    },
+    {
+        id: 6,
+        image: "/src/assets/location-photos/photo-6.jpg",
+        location: "France",
+        title: "Eiffle Tower, Paris",
+        date: "17 Nov, 2019",
+        description: "The Eiffel Tower is a wrought-iron lattice tower on the Champ de Mars in Paris, France. It is named after the engineer Gustave Eiffel, whose company designed and built the tower from 1887 to 1889. ",
+    },
+    {
+        id: 7,
+        image: "/src/assets/location-photos/photo-7.jpg",
+        location: "Germany",
+        title: "James-Simon-Galerie, Berlin",
+        date: "22 Oct, 2019",
+        description: "The James Simon Gallery is a centrally located visitor center and art gallery between the reconstructed Neues Museum and the Kupfergraben arm of the Spree river on Museum Island in Berlin, Germany.",
+    },
+    {
+        id: 8,
+        image: "/src/assets/location-photos/photo-8.jpg",
+        location: "Greece",
+        title: "Lindos Village, Rodos",
+        date: "26 Aug, 2019",
+        description: "Lindos is a town on the Greek island of Rhodes. It’s known for its clifftop acropolis, which features monumental 4th-century gates and reliefs from about 280 B.C.",
+    },
+    {
+        id: 9,
+        image: "/src/assets/location-photos/photo-9.jpg",
+        location: "Belgium",
+        title: "Bruges",
+        date: "23 March, 2019",
+        description: "Bruges, the capital of West Flanders in northwest Belgium, is distinguished by its canals, cobbled streets and medieval buildings. ",
+    }
+
+
+]
