@@ -18,10 +18,14 @@ A simplified version of thr main page of Airbnb Experiences Clone was built, wit
 ![image](https://github.com/mklimczak93/scrimba-react-course/assets/123643355/597c6e2c-4b6d-490b-aa04-e337e87886b5)
 ![image](https://github.com/mklimczak93/scrimba-react-course/assets/123643355/1b58b3bd-96fd-4055-b7fa-65cc8e512d3d)
 
-### 0.4 Travel Journal
+### 04. Travel Journal
 Fourth project of the course - done on my own - a travel journal with entries about various travel destinations. It was designed based on provided Figma file, however the code was written independently.
 Again, this project focused on the idea of inroducing simple "data-base" - a .js file with a simple travel info objects array. In the ListOfEntries file I mapped a previously written Entry component to each list object using Array.map().
 ![image](https://github.com/mklimczak93/scrimba-react-course/assets/123643355/57084d56-4e5b-4dcf-b62a-5e59582ed0a6)
 ![image](https://github.com/mklimczak93/scrimba-react-course/assets/123643355/064baa8f-f910-4c8c-b0f6-629e9cf714ab)
 
-
+### 05. Meme Generator Project
+Fifth Project, done as a work along, diving into concept of React State, Effect, using forms, fetching, and using outside API.
+Idea and the design of the project was provided by the Scrimba Course and images come from publicaly available library of memes.
+![image](https://github.com/mklimczak93/scrimba-react-course/assets/123643355/04d305dd-3e19-4c56-9ccf-a5924de64b27)
+![image](https://github.com/mklimczak93/scrimba-react-course/assets/123643355/8fc4098a-abdd-4f92-b0d2-8ffc7515cb30)
