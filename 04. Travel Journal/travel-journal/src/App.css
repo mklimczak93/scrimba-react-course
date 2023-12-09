@@ -1,0 +1,228 @@
+/* MAIN ELEMENTS */
+
+:root {
+  --general-background-day: #FFFFFF;
+  --text-color-day:         #2B283A;
+
+  --main-font:           'Poppins', sans-serif clamp(0.6rem, 0.75rem, 0.9rem) 300;
+  --accent-color:       #F55A5A;
+  --border-radius:        5px;
+}
+
+html, body {
+  margin: 0px;
+  padding: 0px;
+  height: 100svh;
+}
+#root {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  display: block;
+  background-color: var(--general-background-day);
+}
+
+
+
+/* HEADER */
+.header {
+  display: block;
+}
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  background-color: var(--accent-color);
+}
+.journal-title {
+  font: var(--main-font);
+  font-size: 24px;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+.journal-logo {
+  height: 30px;
+  width: auto;
+  object-fit: contain;
+  margin-right: 10px;
+}
+
+
+
+/* CARD */
+.entry {
+  /* height: 210px; */
+  height: 370px;
+  width: calc(100svw -300px);
+  display: flex;
+  border: none;
+  padding: 25px 0px;
+  border-bottom: 1px solid #d6d6d6;
+}
+
+.entry-image {
+  /* height: 180px; */
+  height: 320px;
+  width: 240px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 20px;
+}
+
+.entry-text {
+  display: flex;
+  flex-direction: column;
+  max-height: 320px;
+  overflow-y: scroll;
+}
+.location-details {
+  display: flex;
+  align-items: center;
+}
+
+.location-marker{
+  height: 22px;
+  width: 22px;
+  object-fit: contain;
+  margin-right: 10px;
+}
+.entry-location {
+  font: var(--main-font);
+  font-size: 18px;
+  font-weight: 300;
+  color: var(--text-color-day);
+  text-transform: uppercase;
+  padding:0px;
+  margin:0px;
+  margin-right: 10px;
+  align-self: center;
+}
+.google-maps-link{
+  font: var(--main-font);
+  font-size: 18px;
+  font-weight: 200;
+  color: #918E9B;
+}
+
+.entry-title {
+  font: var(--main-font);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text-color-day);
+}
+
+.entry-date {
+  font: var(--main-font);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-color-day);
+}
+
+.entry-description {
+  font: var(--main-font);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-color-day);
+}
+
+.separator {
+  /* color: #F5F5F5; */
+  color: var(--accent-color);
+  background-color: blue;
+  height: 3px;
+}
+
+/* LIST OF CARDS */
+.list-of-entries{
+  width: 100svw;
+  margin: 0px;
+  padding: 30px 300px;
+  overflow-y: scroll;
+}
+
+
+@media (max-width: 1050px) and (orientation: portrait) {
+  .list-of-entries{
+    padding: 30px 70px;
+  }
+}
+
+@media (max-width: 800px) and (orientation: portrait) {
+  .list-of-entries{
+    padding: 30px 50px;
+  }
+  .entry-title {
+    font-size: 32px;
+  }
+  .entry-location, .google-maps-link {
+    font-size: 16px;
+  }
+}
+
+
+@media (max-width: 550px)  and (orientation: portrait) {
+  .list-of-entries{
+    padding: 10px 30px;
+  }
+  .entry {
+    height: 220px;
+    width: calc(100svw -60px);
+    padding: 10px 0px;
+  }
+  .entry-image {
+    height: 200px;
+    width: 135px;
+    margin-right: 10px;
+  }
+  .entry-text{
+    max-height: 200px;
+  }
+  .entry-title {
+    font-size: 18px;
+  }
+  .location-marker {
+    height: 10px;
+    width: 10px;
+    margin-right: 5px;
+  }
+  .entry-location, .google-maps-link, .entry-date {
+    font-size: 10px;
+  }
+  .entry-description {
+    font-size: 10px;
+  }
+}
+@media (orientation: landscape) and (max-height: 700px) {
+  .list-of-entries{
+    padding: 20px 60px;
+  }
+}
+/* --- SCROLLBAR --- */
+
+/* width */
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+background: transparent;
+background-clip: padding-box;
+margin-top: 60px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+background: transparent;
+background-clip: padding-box;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover{
+background: #908397;
+border-right: 5px solid rgba(0, 0, 0, 0);
+border-bottom: 10px solid rgba(0, 0, 0, 0);
+background-clip: padding-box;
+}
