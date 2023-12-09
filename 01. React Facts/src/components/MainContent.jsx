@@ -2,9 +2,10 @@ import React from "react"
 import '/src/App.css'
 import logobig from "/src/assets/react-icon-large.png"
 
-function MainContent() {
+function MainContent(props) {
     return (
-        <div className="main-content">
+        <div className= {props.darkMode ? "main-content dark" : "main-content"}>
+        {/* <div className={props.darkMode ? "dark" : ""}> */}
             <div className="main-text">
                 <h1 className="main-content-h1">Fun facts about React</h1>
                 <ul className="main-content-ul">
