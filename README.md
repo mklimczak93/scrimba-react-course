@@ -34,3 +34,11 @@ Fifth Project, done as a work along, diving into concept of React State, Effect,
 Idea and the design of the project was provided by the Scrimba Course and images come from publicaly available library of memes.
 ![image](https://github.com/mklimczak93/scrimba-react-course/assets/123643355/04d305dd-3e19-4c56-9ccf-a5924de64b27)
 ![image](https://github.com/mklimczak93/scrimba-react-course/assets/123643355/8fc4098a-abdd-4f92-b0d2-8ffc7515cb30)
+
+### 05. Notes App
+Fifth project - done as a work-along, an application allowing writing, saving, editing & deleting notes. Done with react-split component,
+and in two versions:
+ - first version: with Nano Id unique string generator and saving notes to localStorage,
+ - second version: with Firebase.
+![image](https://github.com/mklimczak93/scrimba-react-course/assets/123643355/b1c928e8-2dc5-46c3-adff-54adc603432b)
+
