@@ -1,0 +1,134 @@
+/* MAIN ELEMENTS */
+
+:root {
+  --general-background:   #F5F7FB;
+
+  --text-color:           #2B283A;
+  --main-font:            'Karla', sans-serif clamp(0.6rem, 0.75rem, 0.9rem) 300;
+  --chosen-answer:        #D6DBF5;
+  --correct-answer:       #94D7A2;
+  --incorrect-answer:     #F8BCBC;
+  --greyed-out:           #293264;
+  --border-radius:        8px;
+  --accent-blue:          #4D5B9E;
+}
+
+html, body {
+  margin: 0px;
+  padding: 0px;
+  height: 100svh;
+  overflow: hidden;
+}
+#root {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--general-background);
+  overflow: hidden;
+}
+
+.start-screen{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.quiz {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-height: 100svh;
+}
+
+.question-div {
+  width: 600px;
+  font: var(--main-font);
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  text-align: center;
+  border-bottom: 0.8px solid #DBDEF0;
+  padding-bottom: 20px;
+  margin: 0px;
+}
+
+.answers-div {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0px;
+  margin: 0px;
+}
+
+.blob {
+  position: absolute;
+}
+
+#yellow-blob {
+  top: calc(0% - 100px);
+  right: calc(0% - 100px);
+  /* transform: rotate(225deg); */
+}
+
+#blue-blob {
+  bottom: calc(0% - 100px);
+  left: calc(0% - 100px);
+}
+
+
+
+/* MAIN TEXTS */
+.question {
+  font: var(--main-font);
+  font-size: clamp(1.0rem, 1.2rem, 1.5rem);
+  font-weight: 600;
+  margin: 15px 0px;
+}
+
+
+/* --- BUTTONS --- */
+.button {
+  outline: none;
+  border: none;
+  border-radius: var(--border-radius);
+  font: var(--main-font);
+}
+
+
+.action {
+  background-color: var(--accent-blue);
+  color: white;
+  font-size: 16px;
+  padding: 10px 40px;
+  margin-top: 30px;
+}
+.action:hover {
+  box-shadow: 0px 0px 10px 5px rgba(80, 53, 255, 0.3);
+}
+.action:active {
+  box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+}
+
+.answer {
+  background-color: var(--main-background);
+  outline: 1px solid var(--accent-blue);
+  color: var(--accent-blue);
+  font-size: clamp(0.6rem, 0.8rem, 1.2em);
+  font-weight: 400;
+  margin: 0px 15px;
+  padding: 5px 10px;
+}
+
+.answer:active {
+  outline: none;
+  background-color: var(--chosen-answer);
+}
+
+
