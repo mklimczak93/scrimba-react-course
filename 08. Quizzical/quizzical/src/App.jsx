@@ -2,7 +2,7 @@ import React from "react"
 import {nanoid} from "nanoid"
 import YellowBlob from "/src/assets/yellow-blob.svg"
 import BlueBlob from "/src/assets/blue-blob.svg"
-import Question from "/src/components/Question.jsx"
+import useQuestion from "/src/components/Question.jsx"
 import './App.css'
 
 function App() {
@@ -20,11 +20,14 @@ function App() {
 
   //setting states of the quiz
   const [start, setStart]                     = React.useState(true)
+  const [end, setEnd]                         = React.useState(false)
+  //CHANGE successfulFetch to FALSE! changed to true for testing
   const [successfulFetch, setSuccessfulFetch] = React.useState(true)
   const [questions, setQuestions]             = React.useState(questionsBeginningArray)
   const [correctAnswers, setCorrectAnswers]   = React.useState(answersBeginningArray)
   const [userAnswers, setUserAnswers]         = React.useState([])
   const [result, setResult]                   = React.useState([])
+  const [currentResult, setCurrentResult]     = React.useState(0)
 
   //fetching questions from Open Trivia Database
   React.useEffect(() => {
@@ -50,41 +53,97 @@ function App() {
   function startGame() {
     setStart(false)
   }
-  function chooseAnswer(newAnswer) {
-    setUserAnswers(prevAnswers => (
-      [...prevAnswers,
-      newAnswer]
-    ))
+
+  //creating function for mapping
+  function evaluateQuestion(question) {
+    //for each question element we are getting the answer and question object
+    const chosenAnswer = useQuestion(question).chosenAnswer;
+    console.log('App component evQues func:',chosenAnswer)
+    const RenderQuestion = useQuestion(question).render;
+    // const { chosenAnswer, render } = useQuestion(question)
+    //we are updating the collective answers State with the answer
+    React.useEffect(()=>{
+      setUserAnswers(prevAnswers => ([
+        ...prevAnswers,
+        chosenAnswer
+      ]));
+    },[chosenAnswer])
+    
+    //and returning the question object
+    return (RenderQuestion)
   }
+  //mapping over questions to get 5 components with question texts
+  let questionsElements = questions.map(element => {
+    return (evaluateQuestion(element))
+  })
+  
+
 
   // --- --- --- EVALUATING THE QUIZ RESULTS --- --- --- //
+  //everytime user picks an answer, compare the answers and produce result
   React.useEffect(() => {
+    userAnswers.forEach(element => {
+      if (correctAnswers.includes(element)) {
+        setResult(prevResult => ([
+          ...prevResult,
+          1
+        ]))
+    }})
+    console.log('App component - user answers: ', userAnswers)
+    let finalResult = checkResult()
+    setCurrentResult(finalResult)
+  }, [userAnswers])
 
-  }, [result])
+  //checking the results
+  function checkResult() {
+    //getting the result
+    let sum = 0
+    for (let i = 0; i < result.length; i++ ) {
+      sum += result[i];
+    }
+    console.log('Correct answers:', sum)
+    return sum
+  }
 
-  //mapping over questions to get 5 components with question texts
-  let questionsElements = questions.map(element => 
-  <Question 
-    key = {nanoid()}
-    asking={element.question} 
-    correct_answer={element.correct_answer} 
-    incorrect_answers={element.incorrect_answers} 
-    // chosen = {()=> {chooseAnswer(element.user_answer)}}
-  />)
+  function showResults() {
+    setStart(false)
+    setEnd(true)
+  }
 
+  function restartGame() {
+    //CHANGE BACK TO FALSE AFTER TESTING!!!!!! ------------------------------------------!!!
+    setEnd(false)
+    setStart(true)
+    setSuccessfulFetch(true)
+    setQuestions(questionsBeginningArray)
+    setCorrectAnswers(answersBeginningArray)
+    setUserAnswers([])
+    setResult([])
+    
+  }
 
   // --- --- --- RENDERING --- --- --- //
   return (
     <main>
       <img src={YellowBlob} className="blob" id="yellow-blob"></img>
      <div className="quiz">
-        {!start && (successfulFetch ? questionsElements : <h3>Loading questions...</h3>)}
-        {!start && (successfulFetch && <button className="button action">Check answers</button>)}
+
+        {/* --- --- --- END OF THE GAME --- --- --- */}
+        {end && questionsElements}
+        {end && <h3>You scored {currentResult}/5 correct answers</h3>}
+        {end && <button className="button action" onClick={restartGame}>Play again</button>}
+
+        {/* --- --- --- LOADING QUESTIONS --- --- --- */}
+        {!start && !end && (successfulFetch ? questionsElements : <h3>Loading questions...</h3>)}
+        {!start && !end && (successfulFetch && <button className="button action" onClick={showResults} >Check answers</button>)}
+
+        {/* --- --- --- START OF THE GAME --- --- --- */}
         {start && <div className="start-screen">
           <h1>Quizzical</h1>
           <h5>A simple quiz game with questions from Open Trivia Database</h5>
           <button className="button action" onClick={startGame}>Start quiz</button>
         </div>}
+
      </div>
      <img src={BlueBlob} className="blob" id="blue-blob"></img>
     </main>

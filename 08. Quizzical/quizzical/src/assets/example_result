@@ -1,16 +1,18 @@
-{"response_code":0,"results":
-[
-    {
-        "type":"multiple",
-        "difficulty":"easy",
-        "category":"Sports",
-        "question":"The Los Angeles Dodgers were originally from what U.S. city?",
-        "correct_answer":"Brooklyn",
-        "incorrect_answers":["Las Vegas","Boston","Seattle"]
-    },
-    {"type":"multiple","difficulty":"easy","category":"Science &amp; Nature","question":"Which of these bones is hardest to break?","correct_answer":"Femur","incorrect_answers":["Cranium","Humerus","Tibia"]},
-    {"type":"multiple","difficulty":"easy","category":"Entertainment: Television","question":"In &quot;Rick And Morty&quot;, who shot &quot;Mr. Poopybutthole&quot; in the episode &quot;Total Rickall&quot;?","correct_answer":"Beth","incorrect_answers":["Rick","Jerry","Morty"]},
-    {"type":"multiple","difficulty":"easy","category":"History","question":"Which of the following was Brazil was a former colony under?","correct_answer":"Portugal","incorrect_answers":["Spain","The Netherlands","France"]},
-    {"type":"multiple","difficulty":"easy","category":"Entertainment: Video Games","question":"In CoD: Black Ops III, what is the name of the rogue A.I. antagonist?","correct_answer":"Corvus","incorrect_answers":["Cabal","Legion","Icarus"]}
+{
+    "response_code":0,
+    "results":
+    [
+        {
+            "type":"multiple",
+            "difficulty":"easy",
+            "category":"Sports",
+            "question":"The Los Angeles Dodgers were originally from what U.S. city?",
+            "correct_answer":"Brooklyn",
+            "incorrect_answers":["Las Vegas","Boston","Seattle"]
+        },
+        {"type":"multiple","difficulty":"easy","category":"Science &amp; Nature","question":"Which of these bones is hardest to break?","correct_answer":"Femur","incorrect_answers":["Cranium","Humerus","Tibia"]},
+        {"type":"multiple","difficulty":"easy","category":"Entertainment: Television","question":"In &quot;Rick And Morty&quot;, who shot &quot;Mr. Poopybutthole&quot; in the episode &quot;Total Rickall&quot;?","correct_answer":"Beth","incorrect_answers":["Rick","Jerry","Morty"]},
+        {"type":"multiple","difficulty":"easy","category":"History","question":"Which of the following was Brazil was a former colony under?","correct_answer":"Portugal","incorrect_answers":["Spain","The Netherlands","France"]},
+        {"type":"multiple","difficulty":"easy","category":"Entertainment: Video Games","question":"In CoD: Black Ops III, what is the name of the rogue A.I. antagonist?","correct_answer":"Corvus","incorrect_answers":["Cabal","Legion","Icarus"]}
     ]
 }
