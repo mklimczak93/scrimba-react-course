@@ -117,7 +117,7 @@ html, body {
 }
 
 .answer {
-  background-color: var(--main-background);
+  background-color: var(--general-background);
   outline: 1px solid var(--accent-blue);
   color: var(--accent-blue);
   font-size: clamp(0.6rem, 0.8rem, 1.2em);

@@ -7,7 +7,7 @@
             "difficulty":"easy",
             "category":"Sports",
             "question":"The Los Angeles Dodgers were originally from what U.S. city?",
-            "correct_answer":"Brooklyn",
+            " correct_answer":"Brooklyn",
             "incorrect_answers":["Las Vegas","Boston","Seattle"]
         },
         {"type":"multiple","difficulty":"easy","category":"Science &amp; Nature","question":"Which of these bones is hardest to break?","correct_answer":"Femur","incorrect_answers":["Cranium","Humerus","Tibia"]},
@@ -16,3 +16,43 @@
         {"type":"multiple","difficulty":"easy","category":"Entertainment: Video Games","question":"In CoD: Black Ops III, what is the name of the rogue A.I. antagonist?","correct_answer":"Corvus","incorrect_answers":["Cabal","Legion","Icarus"]}
     ]
 }
+
+let allAnswersArray = [
+    {
+        answer_id: nanoid(),
+        answer_picked: false,
+        answer_content: questionSet.correct_answer
+      },
+      {
+        answer_id: nanoid(),
+        answer_picked: false,
+        answer_content: questionSet.correct_answer
+      },
+      {
+        answer_id: nanoid(),
+        answer_picked: false,
+        answer_content: questionSet.correct_answer
+      }
+]
+
+
+{
+  "type":"multiple",
+  "difficulty":"easy",
+  "category":"Sports",
+  "question":"The Los Angeles Dodgers were originally from what U.S. city?",
+  " correct_answer":"Brooklyn",
+  "incorrect_answers":["Las Vegas","Boston","Seattle"],
+  "all_answers": [
+    {
+    answer_id: nanoid(),
+    answer_picked: false,
+    answer_content: answer
+    },
+    {
+      answer_id: nanoid(),
+      answer_picked: false,
+      answer_content: answer
+    }
+    ]
+},
