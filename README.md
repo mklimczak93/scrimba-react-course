@@ -53,3 +53,7 @@ Final project, done on my own, with use of useState and useEffect hooks, fetchin
 ![img02](https://github.com/mklimczak93/scrimba-react-course/assets/123643355/3f5da8f3-6c64-426f-9448-7129ee3e0641)
 ![img04](https://github.com/mklimczak93/scrimba-react-course/assets/123643355/2175e9bd-ac59-40cd-af6b-386b67a678a6)
 
+### Final Course Tests
+![image](https://github.com/mklimczak93/scrimba-react-course/assets/123643355/3860ab3a-058b-46c0-961f-2f4d6e0051e2)
+
+
