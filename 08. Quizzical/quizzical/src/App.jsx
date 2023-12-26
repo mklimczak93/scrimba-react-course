@@ -33,9 +33,11 @@ function App() {
   //aletering the questions object to add the ids
   function addId(questionSet) {
     let all_listed_answers = []
+    let questionId = nanoid()
     //adding correct answer
     all_listed_answers.push(
-      {
+      { 
+        "question_id": questionId,
         "answer_id": nanoid(),
         "answer_picked": false,
         "answer_content": questionSet.correct_answer,
@@ -43,7 +45,9 @@ function App() {
       })
     //adding incorrect answers
     for (let i=0; i<questionSet.incorrect_answers.length; i++) {
-      let thisIncorrectAnswer = {
+      let thisIncorrectAnswer = 
+      {
+        "question_id": questionId,
         "answer_id": nanoid(),
         "answer_picked": false,
         "answer_content": questionSet.incorrect_answers[i],
@@ -55,7 +59,7 @@ function App() {
     shuffleArray(all_listed_answers);
     return {
       "question": {
-        "question_id": nanoid(),
+        "question_id": questionId,
         "question_content": questionSet.question,
         "correct_answer": questionSet.question.correct_answer
       },
@@ -101,15 +105,15 @@ function App() {
             //setting questions in already modified form
             const modifiedArray = (data.results).map((question) => addId(question))
             setQuestions(modifiedArray);
-            //getting correct answers
-            let fetchedAnswers = []
-            questions.map((el) => {
+            const fetchedAnswers = modifiedArray.map((el) => {
+              let correctAnswer = {}
               for (let i=0; i<el.all_answers.length; i++) {
                 if (el.all_answers[i].answer_correct === true) {
-                  fetchedAnswers.push(el.all_answers[i])
-                } 
+                  correctAnswer = el.all_answers[i]
+                }
               }
-            })
+              return correctAnswer
+          })
             console.log(fetchedAnswers)
             setCorrectAnswers(fetchedAnswers);
             setSuccessfulFetch(true)
@@ -118,80 +122,206 @@ function App() {
           }
         })
     }, [])
-    console.log(correctAnswers)
-  //creating a new array of questions with added id fields
-  // const modifiedArray1 = questions.map((question) => addId(question))
-  // const [modifiedArray, setModifiedArray] = React.useState(modifiedArray1)
 
-  //choosing answer function
-  function chooseAnswer(q_id, a_id) {
-    //modyfing the original questions to change the color
-    setQuestions(prevQuestions => {
-      //finding in which question the answer was picked
-      let currentQuestion = {}
-      let existingAnswer = {}
-      let previousAnswers = []
+    
+    
+  //V02 --- --- --- CHOOSING ANSWER --- --- ---
+  //helper functions 
+  function checkUserAnswers(theArray, q_id) {
+    let status = ''
+    //checking if array is not empty
+    if (theArray.length === 0) {
+      status = false
+    } else {
+      let userAnswersIds = theArray.map((answer) => answer.question_id)
+      if (userAnswersIds.includes(q_id)) {
+        status = true
+      } else {
+        status = false
+      }
+    }
+    return status
+  }
 
-      let chosenAnswer = {}
-      let updatedQuestion = {}
-      let updatedAnswers = []
-      let updatedQuestions = []
-      for (let j=0; j<prevQuestions.length; j++) {
-        if (prevQuestions[j].question.question_id === q_id) {
-          currentQuestion = prevQuestions[j];
-          //checking if an answer for this question was already picked
-          for (let i=0; i<currentQuestion.all_answers.length; i++) {
-            console.log(currentQuestion.all_answers[i].answer_picked)
-            if (currentQuestion.all_answers[i].answer_picked === true) {
-              existingAnswer = {
-                ...currentQuestion.all_answers[i],
-                answer_picked: false
-              }
-              previousAnswers.push(existingAnswer)
-              setUserAnswers(prevAnswers => {
-                return prevAnswers.filter(e => e != existingAnswer.answer_content)
-              })
-            } else {
-              previousAnswers.push(currentQuestion.all_answers[i])
-            }
-          }
-          //changing the answer picked status of the chosen question
-          for (let i=0; i<currentQuestion.all_answers.length; i++) {
-            if (currentQuestion.all_answers[i].answer_id === a_id) {
-              chosenAnswer = {
-                ...currentQuestion.all_answers[i],
-                answer_picked: !currentQuestion.all_answers[i].answer_picked
-              }
-              updatedAnswers.push(chosenAnswer);
-              console.log(currentQuestion.all_answers[i].answer_content)
-              //adding that answer to useranswers state
-              setUserAnswers(prevAnswers => {
-                return [...prevAnswers, 
-                  {
-                  "question_id": q_id,
-                  "answer": currentQuestion.all_answers[i].answer_content
-                  }
-                ]
-              })
-            } else {
-              updatedAnswers.push(currentQuestion.all_answers[i])
-            }
-          }
-         //changing the current question 
-          updatedQuestion = {
-            ...prevQuestions[j],
-            'all_answers': updatedAnswers
-          }
-          updatedQuestions.push(updatedQuestion)
-        } else {
-          updatedQuestions.push(prevQuestions[j])
+  function removeFromArray(array, value) {
+    //remove an answer with the same question ID!
+    //removing by filter
+    let newArray = []
+    if (array.length === 0) {
+      newArray = []
+    } else {
+      for (let i=0; i<array.length; i++) {
+        if (array[i].question_id != value.question_id) {
+          newArray.push(array[i])
         }
       }
-      //updating state
-      console.log(userAnswers)
-      return updatedQuestions
-    })
+      // newArray = array.map((el) => {
+      //   if (el.question_id != value.question_id) {
+      //     return el
+      //   }
+      // })
+    }
+    return newArray
   }
+
+  function getCurrentQuestion(q_id) {
+    let currentQuestion = {}
+    for (let i=0; i<questions.length; i++) {
+      if (questions[i].question.question_id === q_id) {
+        currentQuestion = questions[i]
+      }
+    }
+    return currentQuestion
+  }
+
+  function getCurrentAnswerByAnswerId(q_id, a_id) {
+    let currentAnswer = {}
+    for (let i=0; i<questions.length; i++) {
+      if (questions[i].question.question_id === q_id) {
+        for (let j=0; j<4; j++) {
+          if (questions[i].all_answers[j].answer_id === a_id) {
+            currentAnswer = questions[i].all_answers[j]
+          }
+        }
+      }
+    }
+    
+    return currentAnswer
+  }
+
+  function getOtherAnswers(q_id, a_id) {
+    let currentAnswer = {}
+    let otherAnswers = []
+    for (let i=0; i<questions.length; i++) {
+      if (questions[i].question.question_id === q_id) {
+        for (let j=0; j<4; j++) {
+          if (questions[i].all_answers[j].answer_id != a_id) {
+            otherAnswers.push(questions[i].all_answers[j])
+          }
+        }
+      }
+    }
+    return otherAnswers
+  }
+  function getPreviousAnswer(q_id, a_id) {
+    let currentAnswer = getCurrentAnswerByAnswerId(q_id, a_id)
+    let previousAnswers = userAnswers
+    let prevAnswer = {}
+    for (let i=0; i<previousAnswers.length; i++) {
+      if (previousAnswers[i].question_id === q_id) {
+        prevAnswer = previousAnswers[i]
+      }
+    }
+    console.log('Previous answer: ', prevAnswer)
+    return prevAnswer
+  }
+
+  //controlling state updates
+  React.useEffect(() => {
+    console.log('User Answer State updated:', userAnswers);
+  }, [userAnswers]);
+  React.useEffect(() => {
+    console.log('Questions State updated:', questions);
+  }, [questions]);
+
+  //ACTUAL CHOOSING ANSWER FUNCTION
+  function chooseAnswer(q_id, a_id) {
+    // --- PART 01 --- check if this question already has an answer
+    let currentQuestion = getCurrentQuestion(q_id)
+    let currentAnswerA = getCurrentAnswerByAnswerId(q_id, a_id)
+    if (checkUserAnswers(userAnswers, q_id) === true) {
+      console.log('This question already has an answer')
+      //if so - change answer_picked in questions.question.all_answers.answer[i]
+      setQuestions(prevQuestions => {
+        let newQuestionsArray = []
+        let previousAnswer = getPreviousAnswer(q_id, a_id)
+        let otherAnswers = getOtherAnswers(q_id, a_id)
+        let changedQuestion = {}
+        let allAnswersWithTheNewOne = []
+        for (let i=0; i<prevQuestions.length; i++) {
+          if (prevQuestions[i].question.question_id === q_id) {
+            let oldAnswers = prevQuestions[i].all_answers
+              previousAnswer = {
+                ...previousAnswer,
+                "answer_picked": false
+              }
+              for (let j=0; j<oldAnswers.length; j++) {
+                if (oldAnswers[j].answer_id === previousAnswer.answer_id) {
+                  allAnswersWithTheNewOne.push(previousAnswer)
+                } else {
+                  allAnswersWithTheNewOne.push(oldAnswers[j])
+                }
+              }
+              changedQuestion = {
+                ...currentQuestion,
+                "all_answers": allAnswersWithTheNewOne
+              }
+            newQuestionsArray.push(changedQuestion)
+          } else {
+            newQuestionsArray.push(prevQuestions[i])
+            }
+          }
+          return newQuestionsArray
+      })
+      //if so - delete answer from userAnswers
+      setUserAnswers(prevAnswers => {
+        let newUserAnswersArray = []
+        newUserAnswersArray = removeFromArray(prevAnswers, currentAnswerA)
+        return newUserAnswersArray
+      })
+      
+    } 
+    // --- PART 02 --- then (not else!)
+    //add new answer to userAnswers
+    //change it picked status
+    currentAnswerA = {
+      ...currentAnswerA,
+      "answer_picked": true
+    }
+    setUserAnswers(prevAnswers => {
+      let newUserAnswersArray = []
+      newUserAnswersArray = [
+        ...prevAnswers,
+        currentAnswerA
+      ]
+      return newUserAnswersArray
+    })
+    //update answer_picked in questions.question.all_answers.answer[i]
+    setQuestions(prevQuestions => {
+      let newQuestionsArray = []
+      let changedAnswer = getCurrentAnswerByAnswerId(q_id, a_id)
+      let otherAnswers = getOtherAnswers(q_id, a_id)
+      let changedQuestion = {}
+      let allAnswersWithTheNewOne = []
+      for (let i=0; i<prevQuestions.length; i++) {
+        if (prevQuestions[i].question.question_id === q_id) {
+          let oldAnswers = prevQuestions[i].all_answers
+            changedAnswer = {
+              ...changedAnswer,
+              "answer_picked": true
+            }
+            for (let j=0; j<oldAnswers.length; j++) {
+              if (oldAnswers[j].answer_id === a_id) {
+                allAnswersWithTheNewOne.push(changedAnswer)
+              } else {
+                allAnswersWithTheNewOne.push(oldAnswers[j])
+              }
+            }
+            changedQuestion = {
+              ...currentQuestion,
+              "all_answers": allAnswersWithTheNewOne
+            }
+            newQuestionsArray.push(changedQuestion)
+          } else {
+            newQuestionsArray.push(prevQuestions[i])
+          }
+        }
+        return newQuestionsArray
+    })
+    
+    } 
+
+  
 
 
   // SETTING UP QUESTIONS
@@ -203,14 +333,15 @@ function App() {
     const answer04 = question.all_answers[3]
     let theQuestionId = question.question.question_id
     //returning element per question
+    
     return (
       <div className='question-div'>
         <Question question = {question.question.question_content}/>
         <div className='answers-div'>
-          <Answer answer = {answer01.answer_content} chosen ={ ()=>{chooseAnswer(theQuestionId, answer01.answer_id)} } picked = {answer01.answer_picked}/>
-          <Answer answer = {answer02.answer_content} chosen ={ ()=>{chooseAnswer(theQuestionId, answer02.answer_id)} } picked = {answer02.answer_picked}/>
-          <Answer answer = {answer03.answer_content} chosen ={ ()=>{chooseAnswer(theQuestionId, answer03.answer_id)} } picked = {answer03.answer_picked}/>
-          <Answer answer = {answer04.answer_content} chosen ={ ()=>{chooseAnswer(theQuestionId, answer04.answer_id)} } picked = {answer04.answer_picked}/>
+          <Answer id = {answer01.answer_id + '-button'} class={answer01.answer_picked ? 'button answer selected' : 'button answer'} answer = {answer01.answer_content} chosen ={ ()=>{chooseAnswer(theQuestionId, answer01.answer_id)} } picked = {answer01.answer_picked} correct = {answer01.answer_correct}/>
+          <Answer id = {answer02.answer_id + '-button'} class={answer02.answer_picked ? 'button answer selected' : 'button answer'} answer = {answer02.answer_content} chosen ={ ()=>{chooseAnswer(theQuestionId, answer02.answer_id)} } picked = {answer02.answer_picked} correct = {answer01.answer_correct}/>
+          <Answer id = {answer03.answer_id + '-button'} class={answer03.answer_picked ? 'button answer selected' : 'button answer'} answer = {answer03.answer_content} chosen ={ ()=>{chooseAnswer(theQuestionId, answer03.answer_id)} } picked = {answer03.answer_picked} correct = {answer01.answer_correct}/>
+          <Answer id = {answer04.answer_id + '-button'} class={answer04.answer_picked ? 'button answer selected' : 'button answer'} answer = {answer04.answer_content} chosen ={ ()=>{chooseAnswer(theQuestionId, answer04.answer_id)} } picked = {answer04.answer_picked} correct = {answer01.answer_correct}/>
         </div> 
       </div>
     )
@@ -224,15 +355,71 @@ function App() {
     setStart(false)
   }
 
+  function assignClass(answer) {
+    let assignedClassName = 'button answer'
+    if (answer.answer_correct) {
+      assignedClassName = 'button answer correct'
+    } else if (answer.answer_correct === false && answer.answer_picked === true) {
+      assignedClassName = 'button answer incorrect'
+    } else {
+      assignedClassName = 'button answer'
+    }
+    return assignedClassName
+  }
+
+
+  const questionsElementsFinal = questions.map((question) => {
+    //creating answers objects
+    const answer01 = question.all_answers[0]
+    const answer02 = question.all_answers[1]
+    const answer03 = question.all_answers[2]
+    const answer04 = question.all_answers[3]
+    let theQuestionId = question.question.question_id
+    //assigning right class
+    const class01 = assignClass(answer01)
+    const class02 = assignClass(answer02)
+    const class03 = assignClass(answer03)
+    const class04 = assignClass(answer04)
+    //returning element per question
+    return (
+      <div className='question-div'>
+        <Question question = {question.question.question_content}/>
+        <div className='answers-div'>
+          <Answer id = {answer01.answer_id + '-button'} class={class01} answer = {answer01.answer_content} chosen ={ ()=>{chooseAnswer(theQuestionId, answer01.answer_id)} } picked = {answer01.answer_picked} correct = {answer01.answer_correct}/>
+          <Answer id = {answer02.answer_id + '-button'} class={class02} answer = {answer02.answer_content} chosen ={ ()=>{chooseAnswer(theQuestionId, answer02.answer_id)} } picked = {answer02.answer_picked} correct = {answer01.answer_correct}/>
+          <Answer id = {answer03.answer_id + '-button'} class={class03} answer = {answer03.answer_content} chosen ={ ()=>{chooseAnswer(theQuestionId, answer03.answer_id)} } picked = {answer03.answer_picked} correct = {answer01.answer_correct}/>
+          <Answer id = {answer04.answer_id + '-button'} class={class04} answer = {answer04.answer_content} chosen ={ ()=>{chooseAnswer(theQuestionId, answer04.answer_id)} } picked = {answer04.answer_picked} correct = {answer01.answer_correct}/>
+        </div> 
+      </div>
+    )
+    })
 
   function showResults() {
-    userAnswers.map(element => {
-      if (correctAnswers.includes(element)) {
+    const correctAnswersIds = correctAnswers.map(answer => answer.answer_id)
+    const userAnswersIds = userAnswers.map(answer => answer.answer_id)
+    userAnswersIds.map(element => {
+      if (correctAnswersIds.includes(element)) {
         setResult(prevResult => prevResult + 1)
     }})
+    //V01 - coloring the buttons
+    // const correctAnswersBUTTONSIds = correctAnswersIds.map((el) => {
+    //   return (el+'-button')
+    // })
+    // const buttonsArray = correctAnswersBUTTONSIds.map((el) => {
+    //   const button = document.getElementById(el)
+    //   //button.style.backgroundColor = '#94D7A2'
+    //   button.className = 'button answer correct'
+    //   return button
+    // })
+    
+
+    
+      //if other answer was selected - mark it red
     setStart(false)
     setEnd(true)
   }
+
+
 
   function restartGame() {
     //CHANGE BACK FETCH TO FALSE AFTER TESTING!!!!!! ------------------------------------------!!!
@@ -252,8 +439,8 @@ function App() {
       <div key="quiz" className="quiz">
 
         {/* --- --- --- END OF THE GAME --- --- --- */}
-        {end && questionsElements}
-        {end && <h3>You scored {result}/5 correct answers</h3>}
+        {end && questionsElementsFinal}
+        {end && <h3 className='score-title'>You scored {result}/5 correct answers</h3>}
         {end && <button className="button action" onClick={restartGame}>Play again</button>}
 
         {/* --- --- --- LOADING QUESTIONS --- --- --- */}
@@ -263,7 +450,7 @@ function App() {
         {/* --- --- --- START OF THE GAME --- --- --- */}
         {start && <div className="start-screen">
             <h1>Quizzical</h1>
-            <h5>A simple quiz game with questions from Open Trivia Database</h5>
+            <h5 className='score-title'>A simple quiz game with questions from Open Trivia Database</h5>
             <button className="button action" onClick={startGame}>Start quiz</button>
           </div>}
 

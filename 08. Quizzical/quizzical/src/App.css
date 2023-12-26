@@ -18,6 +18,7 @@ html, body {
   padding: 0px;
   height: 100svh;
   overflow: hidden;
+  background-color: var(--general-background);
 }
 #root {
   height: 100%;
@@ -27,15 +28,18 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--general-background);
   overflow: hidden;
 }
-
+main {
+  overflow: hidden;
+}
 .start-screen{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 .quiz {
@@ -43,7 +47,8 @@ html, body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-height: 100svh;
+  max-height: 90svh;
+  z-index: 2;
 }
 
 .question-div {
@@ -57,6 +62,7 @@ html, body {
   border-bottom: 0.8px solid #DBDEF0;
   padding-bottom: 20px;
   margin: 0px;
+  z-index: 3;
 }
 
 .answers-div {
@@ -65,6 +71,7 @@ html, body {
   justify-content: space-between;
   padding: 0px;
   margin: 0px;
+  z-index: 3;
 }
 
 .blob {
@@ -87,7 +94,7 @@ html, body {
 /* MAIN TEXTS */
 .question {
   font: var(--main-font);
-  font-size: clamp(1.0rem, 1.2rem, 1.5rem);
+  font-size: clamp(0.8rem, 1.0rem, 1.3rem);
   font-weight: 600;
   margin: 15px 0px;
 }
@@ -107,7 +114,8 @@ html, body {
   color: white;
   font-size: 16px;
   padding: 10px 40px;
-  margin-top: 30px;
+  margin-top: 15px;
+  z-index: 3;
 }
 .action:hover {
   box-shadow: 0px 0px 10px 5px rgba(80, 53, 255, 0.3);
@@ -120,7 +128,7 @@ html, body {
   background-color: var(--general-background);
   outline: 1px solid var(--accent-blue);
   color: var(--accent-blue);
-  font-size: clamp(0.6rem, 0.8rem, 1.2em);
+  font-size: clamp(0.5rem, 0.7rem, 1.0em);
   font-weight: 400;
   margin: 0px 15px;
   padding: 5px 10px;
@@ -130,5 +138,110 @@ html, body {
   outline: none;
   background-color: var(--chosen-answer);
 }
+.selected {
+  background-color: var(--chosen-answer);
+}
 
+.correct {
+  background-color: var(--correct-answer);
+}
+
+.incorrect {
+  background-color: var(--incorrect-answer);
+}
+.score-title {
+  font-size: 20px;
+  margin-top: 10px;
+  z-index: 3;
+}
+
+@media (max-width: 1050px) and (orientation: portrait) {
+  .question-div {
+    width: 700px;
+  }
+  .question {
+    font-size: clamp(1.3rem, 1.6rem, 2rem);
+    margin: 20px 0px;
+  }
+  .answer {
+    font-size: clamp(1rem, 1.2rem, 1.5em);
+    margin: 0px 20px;
+  }
+  .action {
+    font-size: 18px;
+    padding: 10px 40px;
+    margin-top: 30px;
+  }
+  .score-title {
+    font-size: 24px;
+    margin-top: 30px;
+  }
+}
+
+/* @media (max-width: 800px) and (orientation: portrait) {
+
+} */
+
+@media (max-width: 550px) and (orientation: portrait) {
+  main {
+    height: 100svh;
+    width: 100vw;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .start-screen {
+    width: 350px;
+  }
+ 
+  .question-div {
+    width: 350px;
+    padding-bottom: 20px;
+    overflow: hidden;
+  }
+  .question {
+    font-size: clamp(0.6rem, 0.8rem, 1.0rem);
+    margin: 10px 0px;
+  }
+  .answer {
+    font-size: clamp(0.5rem, 0.6rem, 0.7em);
+    margin: 0px 10px;
+  }
+  .action {
+    font-size: 12px;
+    padding: 8px 30px;
+    margin-top: 20px;
+  }
+  .score-title {
+    font-size: 16px;
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+}
+
+@media (orientation: landscape) and (max-height: 700px) {
+  .question-div {
+    width: 600px;
+    padding-bottom: 20px;
+  }
+  .question {
+    font-size: clamp(0.6rem, 0.8rem, 1.0rem);
+    margin: 10px 0px;
+  }
+  .answer {
+    font-size: clamp(0.5rem, 0.6rem, 0.7em);
+    margin: 0px 10px;
+  }
+  .action {
+    font-size: 12px;
+    padding: 8px 30px;
+    margin-top: 10px;
+  }
+  .score-title {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+}
 

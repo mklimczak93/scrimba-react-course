@@ -4,11 +4,17 @@ import {nanoid} from "nanoid"
 
 export default function Answer(props) {
     let answer = decode(props.answer)
+    //using the classes instead of styles in the end
     const styles = {
-        backgroundColor: props.picked ? "#D6DBF5" : "#F5F7FB",
-        // outline:         props.answer_picked ? 'none' : '1px solid #4D5B9E'
+        backgroundColor: props.picked ? "#D6DBF5" : "#F5F7FB"
     }
-    return <button className='button answer' id={nanoid()} onClick={props.chosen} style={styles}> {answer} </button>
+    const stylesCorrect = {
+        backgroundColor: '#94D7A2'
+    }
+    const stylesIncorrect = {
+        backgroundColor: '#F8BCBC'
+    }
+    return <button className={props.class} id={props.id} onClick={props.chosen}> {answer} </button>
                 
         
     

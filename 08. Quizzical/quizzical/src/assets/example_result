@@ -40,7 +40,10 @@ let allAnswersArray = [
   "type":"multiple",
   "difficulty":"easy",
   "category":"Sports",
-  "question":"The Los Angeles Dodgers were originally from what U.S. city?",
+  "question": {
+    question_id: nanoid(),
+    question_content: questionSet.question
+  },
   " correct_answer":"Brooklyn",
   "incorrect_answers":["Las Vegas","Boston","Seattle"],
   "all_answers": [
@@ -56,3 +59,80 @@ let allAnswersArray = [
     }
     ]
 },
+
+
+
+
+let questions = [
+  {
+    "question": {
+      "question_id": questionId,
+      "question_content": questionSet.question,
+      "correct_answer": questionSet.question.correct_answer,
+    },
+    "all_answers": [
+      {
+        "question_id": questionId,
+        "answer_id": nanoid(),
+        "answer_picked": false,
+        "answer_content": questionSet.incorrect_answers[i],
+        "answer_correct": true
+      },
+      {
+        "question_id": questionId,
+        "answer_id": nanoid(),
+        "answer_picked": false,
+        "answer_content": questionSet.incorrect_answers[i],
+        "answer_correct": false
+      },
+      {
+        "question_id": questionId,
+        "answer_id": nanoid(),
+        "answer_picked": false,
+        "answer_content": questionSet.incorrect_answers[i],
+        "answer_correct": false
+      },
+      {
+        "question_id": questionId,
+        "answer_id": nanoid(),
+        "answer_picked": false,
+        "answer_content": questionSet.incorrect_answers[i],
+        "answer_correct": false
+      }
+    ]
+  },
+  {
+    "question": {
+      "question_id": nanoid(),
+      "question_content": questionSet.question,
+      "correct_answer": questionSet.question.correct_answer,
+      "user_answer": "not chosen yet"
+    },
+    "all_answers": [
+      {
+        "answer_id": nanoid(),
+        "answer_picked": false,
+        "answer_content": questionSet.incorrect_answers[i],
+        "answer_correct": false
+      },
+      {
+        "answer_id": nanoid(),
+        "answer_picked": false,
+        "answer_content": questionSet.incorrect_answers[i],
+        "answer_correct": false
+      },
+      {
+        "answer_id": nanoid(),
+        "answer_picked": false,
+        "answer_content": questionSet.incorrect_answers[i],
+        "answer_correct": false
+      },
+      {
+        "answer_id": nanoid(),
+        "answer_picked": false,
+        "answer_content": questionSet.incorrect_answers[i],
+        "answer_correct": false
+      }
+    ]
+  }
+]
