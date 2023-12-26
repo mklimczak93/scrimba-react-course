@@ -1,0 +1,247 @@
+/* MAIN ELEMENTS */
+
+:root {
+  --general-background:   #F5F7FB;
+
+  --text-color:           #2B283A;
+  --main-font:            'Karla', sans-serif clamp(0.6rem, 0.75rem, 0.9rem) 300;
+  --chosen-answer:        #D6DBF5;
+  --correct-answer:       #94D7A2;
+  --incorrect-answer:     #F8BCBC;
+  --greyed-out:           #293264;
+  --border-radius:        8px;
+  --accent-blue:          #4D5B9E;
+}
+
+html, body {
+  margin: 0px;
+  padding: 0px;
+  height: 100svh;
+  overflow: hidden;
+  background-color: var(--general-background);
+}
+#root {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+main {
+  overflow: hidden;
+}
+.start-screen{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.quiz {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-height: 90svh;
+  z-index: 2;
+}
+
+.question-div {
+  width: 600px;
+  font: var(--main-font);
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  text-align: center;
+  border-bottom: 0.8px solid #DBDEF0;
+  padding-bottom: 20px;
+  margin: 0px;
+  z-index: 3;
+}
+
+.answers-div {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0px;
+  margin: 0px;
+  z-index: 3;
+}
+
+.blob {
+  position: absolute;
+}
+
+#yellow-blob {
+  top: calc(0% - 100px);
+  right: calc(0% - 100px);
+  /* transform: rotate(225deg); */
+}
+
+#blue-blob {
+  bottom: calc(0% - 100px);
+  left: calc(0% - 100px);
+}
+
+
+
+/* MAIN TEXTS */
+.question {
+  font: var(--main-font);
+  font-size: clamp(0.8rem, 1.0rem, 1.3rem);
+  font-weight: 600;
+  margin: 15px 0px;
+}
+
+
+/* --- BUTTONS --- */
+.button {
+  outline: none;
+  border: none;
+  border-radius: var(--border-radius);
+  font: var(--main-font);
+}
+
+
+.action {
+  background-color: var(--accent-blue);
+  color: white;
+  font-size: 16px;
+  padding: 10px 40px;
+  margin-top: 15px;
+  z-index: 3;
+}
+.action:hover {
+  box-shadow: 0px 0px 10px 5px rgba(80, 53, 255, 0.3);
+}
+.action:active {
+  box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+}
+
+.answer {
+  background-color: var(--general-background);
+  outline: 1px solid var(--accent-blue);
+  color: var(--accent-blue);
+  font-size: clamp(0.5rem, 0.7rem, 1.0em);
+  font-weight: 400;
+  margin: 0px 15px;
+  padding: 5px 10px;
+}
+
+.answer:active {
+  outline: none;
+  background-color: var(--chosen-answer);
+}
+.selected {
+  background-color: var(--chosen-answer);
+}
+
+.correct {
+  background-color: var(--correct-answer);
+}
+
+.incorrect {
+  background-color: var(--incorrect-answer);
+}
+.score-title {
+  font-size: 20px;
+  margin-top: 10px;
+  z-index: 3;
+}
+
+@media (max-width: 1050px) and (orientation: portrait) {
+  .question-div {
+    width: 700px;
+  }
+  .question {
+    font-size: clamp(1.3rem, 1.6rem, 2rem);
+    margin: 20px 0px;
+  }
+  .answer {
+    font-size: clamp(1rem, 1.2rem, 1.5em);
+    margin: 0px 20px;
+  }
+  .action {
+    font-size: 18px;
+    padding: 10px 40px;
+    margin-top: 30px;
+  }
+  .score-title {
+    font-size: 24px;
+    margin-top: 30px;
+  }
+}
+
+/* @media (max-width: 800px) and (orientation: portrait) {
+
+} */
+
+@media (max-width: 550px) and (orientation: portrait) {
+  main {
+    height: 100svh;
+    width: 100vw;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .start-screen {
+    width: 350px;
+  }
+ 
+  .question-div {
+    width: 350px;
+    padding-bottom: 20px;
+    overflow: hidden;
+  }
+  .question {
+    font-size: clamp(0.6rem, 0.8rem, 1.0rem);
+    margin: 10px 0px;
+  }
+  .answer {
+    font-size: clamp(0.5rem, 0.6rem, 0.7em);
+    margin: 0px 10px;
+  }
+  .action {
+    font-size: 12px;
+    padding: 8px 30px;
+    margin-top: 20px;
+  }
+  .score-title {
+    font-size: 16px;
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+}
+
+@media (orientation: landscape) and (max-height: 700px) {
+  .question-div {
+    width: 600px;
+    padding-bottom: 20px;
+  }
+  .question {
+    font-size: clamp(0.6rem, 0.8rem, 1.0rem);
+    margin: 10px 0px;
+  }
+  .answer {
+    font-size: clamp(0.5rem, 0.6rem, 0.7em);
+    margin: 0px 10px;
+  }
+  .action {
+    font-size: 12px;
+    padding: 8px 30px;
+    margin-top: 10px;
+  }
+  .score-title {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+}
+
